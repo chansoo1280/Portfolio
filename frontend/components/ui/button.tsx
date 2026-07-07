@@ -4,10 +4,10 @@ import { cn } from "./utils";
 
 function Button({
   className,
-  
-                        variant,
-                        size,
-                        asChild
+    variant,
+    size,
+    asChild,
+  ...props
 }: React.ComponentProps<"button"> & {
   variant? : string
   size? : string
@@ -17,7 +17,9 @@ function Button({
   return (
     <button
       data-slot="button"
-    />
+      {...props}
+    >
+      </button>
   );
 }
 

@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 
 export function DarkModeToggle() {
@@ -5,7 +6,7 @@ export function DarkModeToggle() {
 
   useEffect(() => {
     const darkMode = localStorage.getItem('darkMode') === 'true';
-    setIsDark(darkMode);
+    setTimeout(() => setIsDark(darkMode), 0);
     if (darkMode) {
       document.documentElement.classList.add('dark');
     }
@@ -14,8 +15,8 @@ export function DarkModeToggle() {
   const toggleDarkMode = () => {
     const newDarkMode = !isDark;
     setIsDark(newDarkMode);
-    localStorage.setItem('darkMode', String(newDarkMode));
-    
+    localStorage.setItem('darkMode', JSON.stringify(newDarkMode));
+
     if (newDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
@@ -26,10 +27,10 @@ export function DarkModeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className="fixed top-6 right-6 z-50 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+      className="fixed top-6 right-6 z-50 rounded-full bg-white p-3 shadow-lg transition-shadow hover:shadow-xl dark:bg-gray-800"
     >
       {isDark ? (
-        <div className="text-yellow-500"  />
+        <div className="text-yellow-500" />
       ) : (
         <div className="text-gray-700" />
       )}
